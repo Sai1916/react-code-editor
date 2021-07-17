@@ -1,0 +1,26 @@
+.file_explorer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 20%;
+    align-items: center;
+    border-right: 1px solid gray;
+}
+hr{
+    height: 0.4px solid;
+    width: 70%;
+}
+.files{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+} 
+.files button{
+    padding: 10px;
+    background-color: rgb(18, 18, 46);
+    border: 0.4px solid gray;
+    cursor: pointer;
+    outline: none;
+    color: white;
+}

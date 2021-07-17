@@ -1,0 +1,13 @@
+.live{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    margin-left: 10px;
+    color: yellow;
+}
+.browser_view{
+    width: 560px;
+    height: 100vh;
+    background-color: white;
+}
