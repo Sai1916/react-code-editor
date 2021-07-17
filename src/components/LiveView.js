@@ -4,7 +4,7 @@ import './LiveView.css'
 function LiveView({src}){
     return(
         <div className="live">
-            <h2 className="title">OUTPUT</h2>
+            <h2 className="title">Live Preview</h2>
             <div className="browser_view">
                 <iframe 
                     srcDoc={src}

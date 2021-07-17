@@ -1,0 +1,20 @@
+export const data=[
+    {
+        id:"1",
+        name:"index.html",
+        language:"xml",
+        value:''
+    },
+    {
+        id:"2",
+        name:"index.css",
+        language:"css",
+        value:''
+    },
+    {
+        id:"3",
+        name:"index.js",
+        language:"js",
+        value:''
+    }
+]

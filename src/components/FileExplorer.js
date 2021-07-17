@@ -1,37 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import EditorView from './EditorView'
 import './FileExplorer.css'
+import data from './data'
 
 function FileExplorer(){
 
-    const fileNames=[
-        {
-            id:"1",
-            name:"index.html",
-            language:"xml",
-            value:''
-        },
-        {
-            id:"2",
-            name:"index.css",
-            language:"css",
-            value:''
-        },
-        {
-            id:"3",
-            name:"index.js",
-            language:"js",
-            value:''
-        }]
+    const [open,setOpen] = useState(false)
+
+   
+
+        function ClickEvent(file){
+            <EditorView open={setOpen(!open)} value={file.value} />
+        }
 
     return(
-        
-
         <div className="file_explorer">
             <h5>FILE EXPLORER</h5>
             <hr />
             <div className="files">
-                {fileNames.map((file) => (
-                    <button key={file.id} value={file.language}>{file.name}</button>
+                {data.map((file) => (
+                    <button key={file.id} value={file.language} onClick={ClickEvent}>{file.name}</button>
                 ))}
             </div>
         </div>

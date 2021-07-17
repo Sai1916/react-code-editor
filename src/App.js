@@ -1,32 +1,50 @@
 import './App.css';
-import {useState} from 'react'
-import FileExplorer from './components/FileExplorer'
+import {useEffect, useState} from 'react'
 import Editor from './components/Editor'
 import LiveView from './components/LiveView'
+import { data } from './components/data';
+import useLocalStorage from './components/useLocalStorage'
 
 function App() {
-  const [html,setHtml] = useState('');
-  const [css,setCss] = useState('');
-  const [js,setJs] = useState('');
+  const [html,setHtml] = useLocalStorage('html','');
+  const [css,setCss] = useLocalStorage('css','');
+  const [js,setJs] = useLocalStorage('js','');
 
-  const SrcDocument =
-    `
-      <html>
-        <body>${html}</body>
-        <style>${css}</style>
-        <script>${js}</script>
-      </html>
-    `
+  const [open,setOpen] = useState('xml');
+
+  const [doc,setDoc] = useState('')
+
+  useEffect(() =>{
+    const timeout = setTimeout(() =>{
+      setDoc(`
+        <html>
+          <body>${html}</body>
+          <style>${css}</style>
+          <script>${js}</script>
+        </html>
+      `
+      )
+    },200)
+      return () => clearTimeout(timeout)
+  },[html,css,js])
 
   return (
     <div className="app">
-      <FileExplorer />
+      <div className="file_explorer">
+            <h5>FILE EXPLORER</h5>
+            <hr />
+            <div className="files">
+                {data.map((file) => (
+                    <button key={file.id} value={file.language} onClick={()=> {setOpen(file.language)}}>{file.name}</button>
+                ))}
+            </div>
+        </div>
       <div className="editors">
-        <Editor visible="true" language="xml" name="index.html" value={html} onChange={setHtml}/>
-        <Editor visible="true" language="css" name="index.css" value={css} onChange={setCss}/>
-        <Editor visible="true" language="js" name="index.js" value={js} onChange={setJs}/> 
+        {open === "xml" && <Editor language="xml" name="index.html" value={html} onChange={setHtml}/>}
+        {open === "css" && <Editor language="css" name="index.css" value={css} onChange={setCss}/>}
+        {open === "js" && <Editor language="js" name="index.js" value={js} onChange={setJs}/> }
       </div>
-      <LiveView src={SrcDocument}/>
+      <LiveView src={doc}/>
     </div>
   );
 }

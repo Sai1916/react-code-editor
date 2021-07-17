@@ -1,6 +1,7 @@
 .live{
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 .title{
     margin-left: 10px;
